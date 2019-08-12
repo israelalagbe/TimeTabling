@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="com.israelalagbe.timetable.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.israelalagbe.timetable.CourseController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <ToolBar prefHeight="40.0" prefWidth="1000">
+            <items>
+                <Button fx:id="coursesNavButton" mnemonicParsing="false" styleClass="jfx-button" text="Courses" />
+                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="About" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Contact" />
+            </items>
+        </ToolBar>
+        <JFXTabPane />
+        <JFXTabPane prefHeight="85.0" prefWidth="69.0" />
+        <JFXTabPane />
+        <JFXTabPane layoutX="142.0" layoutY="233.0" />
+      <JFXTextField fx:id="courseName" layoutX="265.0" layoutY="79.0" prefHeight="25.0" prefWidth="477.0" />
+      <Label layoutX="265.0" layoutY="63.0" text="Course Name" />
+      <JFXTextField fx:id="courseCode" layoutX="265.0" layoutY="144.0" prefHeight="25.0" prefWidth="477.0" />
+      <Label layoutX="265.0" layoutY="128.0" text="Course Code">
+         <font>
+            <Font name="Roboto Regular" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="saveBtn" layoutX="258.0" layoutY="199.0" onAction="#saveCourse" prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="SAVE" />
+      <ScrollPane layoutX="-2.0" layoutY="350.0" prefHeight="148.0" prefWidth="1000.0">
+         <content>
+            <TableView prefHeight="396.0" prefWidth="985.0" fx:id="coursesTable">
+<!--              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>-->
+            </TableView>
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>

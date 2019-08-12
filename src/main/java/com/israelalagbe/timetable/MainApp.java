@@ -19,7 +19,7 @@ public class MainApp extends Application {
     public DataService getDataService() {
         return dataService;
     }
-    
+
     public Scene getScene() {
         return scene;
     }
@@ -28,13 +28,35 @@ public class MainApp extends Application {
         return scene.getWindow();
     }
 
+    public void gotoDepartments() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departments.fxml"));
+
+            Parent root = (Parent) loader.load();
+            DepartmentsController departmentController = loader.getController();
+            departmentController.setMainApp(this);
+            departmentController.loaded();
+            //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));1
+            Stage stage = (Stage) getWindow();
+            stage.setTitle("Time Tabling");
+            scene = new Scene(root);
+            scene.getStylesheets()
+                    .add("/styles/Styles.css");
+            stage.setTitle("Timetabling");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
-        dataService=new DataService();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
-        
+        dataService = new DataService();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/courses.fxml"));
+
         Parent root = (Parent) loader.load();
-         CourseController courseController = loader.getController();
+        CourseController courseController = loader.getController();
         courseController.setMainApp(this);
         courseController.loaded();
         //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
@@ -66,8 +88,7 @@ public class MainApp extends Application {
 //        }catch(Exception e){
 //            System.out.println(e.getMessage());
 //        }
-         
-        
+
         launch(args);
     }
 

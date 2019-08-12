@@ -16,9 +16,10 @@
     <children>
         <ToolBar prefHeight="40.0" prefWidth="1000">
             <items>
-                <Button fx:id="coursesNavButton" mnemonicParsing="false" styleClass="jfx-button" text="Courses" />
-                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="About" />
-                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Contact" />
+                <Button mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" />
+                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments"  onAction="#showDepartments"/>
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Timetables" />
             </items>
         </ToolBar>
         <JFXTabPane />
@@ -33,7 +34,7 @@
             <Font name="Roboto Regular" size="12.0" />
          </font>
       </Label>
-      <JFXButton fx:id="saveBtn" layoutX="258.0" layoutY="199.0" onAction="#saveCourse" prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="SAVE" />
+      <JFXButton layoutX="258.0" layoutY="199.0" onAction="#saveCourse" prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="SAVE" />
       <ScrollPane layoutX="-2.0" layoutY="350.0" prefHeight="148.0" prefWidth="1000.0">
          <content>
             <TableView prefHeight="396.0" prefWidth="985.0" fx:id="coursesTable">

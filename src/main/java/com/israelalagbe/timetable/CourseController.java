@@ -17,13 +17,14 @@ import javafx.scene.control.Label;
 import com.israelalagbe.timetable.models.Course;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class CourseController implements Initializable {
+public class CourseController extends BaseController {
 
-    private MainApp mainApp;
+    
 
     @FXML
     private Label label;
@@ -40,20 +41,18 @@ public class CourseController implements Initializable {
     @FXML
     private TableView<Course> coursesTable;
     private ObservableList<Course> coursesObservable = null;
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
-
-    public MainApp getMainApp() {
-        return mainApp;
-    }
-
+    
+    
     @FXML
-    private void saveCourse(ActionEvent event) {
+    public void saveCourse(ActionEvent event) {
         //courseCode.getText(), courseName.getText();
         Course course=new Course();
         course.setName(courseName.getText());
         course.setCode(courseCode.getText());
+        if(course.getCode().isEmpty()||course.getName().isEmpty()){
+            UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Error", "Don't leave any input unfilled" );
+            return;
+        }
         mainApp.dataService.addCourse(course);
         UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Course Saved" );
         coursesObservable.setAll(mainApp.dataService.getCourses());
@@ -68,8 +67,6 @@ public class CourseController implements Initializable {
        
     }
     public void loaded(){
-         System.out.println(mainApp.dataService);
-         System.out.println("Courses legth"+mainApp.dataService.getCourses().size());
         coursesObservable=FXCollections.observableArrayList(mainApp.dataService.getCourses());
         coursesTable.setItems(coursesObservable);
         TableColumn<Course, String> nameCol = new TableColumn<>("Course Name");

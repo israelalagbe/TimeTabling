@@ -7,6 +7,7 @@ package com.israelalagbe.timetable;
 
 import cat.quickdb.db.AdminBase;
 import com.israelalagbe.timetable.models.Course;
+import com.israelalagbe.timetable.models.Department;
 import com.israelalagbe.timetable.models.Example;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,14 @@ public class DataService {
     public void addCourse(Course course){
         admin.save(course);
     }
+    
     public List<Course> getCourses(){
-        Course course = new Course();
-//        return admin.obtainAll(course,"1=1");
-        
-        //System.out.println("Size is: "+admin.obtain(new Example()).findAll().size());
         return admin.obtain(new Course()).findAll();
+    }
+    public void addDepartment(Department department){
+        admin.save(department);
+    }
+    public List<Department> getDepartments(){
+        return admin.obtain(new Department()).findAll();
     }
 }

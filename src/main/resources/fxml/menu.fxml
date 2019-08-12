@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
+    <ToolBar prefHeight="40.0" prefWidth="503.0">
+        <items>
+          <Button mnemonicParsing="false" text="Home" />
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="About" />
+            <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Contact" />
+        </items>
+      </ToolBar>
+</AnchorPane>
