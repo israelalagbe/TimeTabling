@@ -24,6 +24,11 @@ public abstract class BaseController implements Initializable{
     }
     @FXML
     public  void showDepartments(ActionEvent event) {
-        mainApp.gotoDepartments();
+        mainApp.navigate("departments");
     }
+    @FXML
+    public  void showCourses(ActionEvent event) {
+        mainApp.navigate("courses");
+    }
+    public abstract void loaded();
 }

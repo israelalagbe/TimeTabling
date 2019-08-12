@@ -15,8 +15,8 @@
     <children>
         <ToolBar prefHeight="40.0" prefWidth="1000">
             <items>
-                <Button fx:id="coursesNavButton" mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" />
-                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments" />
+                <Button mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" onAction="#showCourses" />
+                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments"  onAction="#showDepartments"/>
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Timetables" />
             </items>

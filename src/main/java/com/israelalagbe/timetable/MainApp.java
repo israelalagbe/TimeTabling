@@ -27,15 +27,26 @@ public class MainApp extends Application {
     public Window getWindow() {
         return scene.getWindow();
     }
-
-    public void gotoDepartments() {
+    
+    public void navigate(String pageName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/departments.fxml"));
+            FXMLLoader loader=null;
+            switch(pageName){
+                case "departments":{
+                    loader = new FXMLLoader(getClass().getResource("/fxml/departments.fxml"));
+                    break;
+                }
+                case "courses":{
+                    loader = new FXMLLoader(getClass().getResource("/fxml/courses.fxml"));
+                    break;
+                }
+            }
+            
 
             Parent root = (Parent) loader.load();
-            DepartmentsController departmentController = loader.getController();
-            departmentController.setMainApp(this);
-            departmentController.loaded();
+            BaseController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.loaded();
             //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));1
             Stage stage = (Stage) getWindow();
             stage.setTitle("Time Tabling");
