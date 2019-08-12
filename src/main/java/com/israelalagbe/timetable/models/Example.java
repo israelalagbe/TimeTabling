@@ -36,5 +36,13 @@ public class Example{
     public String getMe() {
         return me;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMe(String me) {
+        this.me = me;
+    }
     
 }

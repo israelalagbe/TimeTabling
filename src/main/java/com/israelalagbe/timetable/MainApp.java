@@ -1,6 +1,7 @@
 package com.israelalagbe.timetable;
 
 import cat.quickdb.db.AdminBase;
+import com.israelalagbe.timetable.models.Course;
 import com.israelalagbe.timetable.models.Example;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -35,6 +36,7 @@ public class MainApp extends Application {
         Parent root = (Parent) loader.load();
          CourseController courseController = loader.getController();
         courseController.setMainApp(this);
+        courseController.loaded();
         //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 
         stage.setTitle("Time Tabling");
@@ -55,10 +57,17 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Example example = new Example();
-        AdminBase admin = AdminBase.initialize(AdminBase.DATABASE.MYSQL,
-                "localhost", "3306", "timetable", "root", "");
-        admin.save(example);
+//        Example example = new Example();
+//         Course course=new Course();
+//        try{
+//            AdminBase admin = AdminBase.initialize(AdminBase.DATABASE.MYSQL,
+//                "localhost", "3306", "timetable", "root", "");
+//            admin.save(course);
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+         
+        
         launch(args);
     }
 
