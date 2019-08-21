@@ -8,6 +8,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -69,7 +70,13 @@ public class MainApp extends Application {
         Parent root = (Parent) loader.load();
         CourseController courseController = loader.getController();
         courseController.setMainApp(this);
-        courseController.loaded();
+        try{
+               courseController.loaded();
+        }
+        catch(Exception e){
+               UIManager.showAlert(Alert.AlertType.INFORMATION, stage, "Database Connection Error", e.getMessage() );
+        }
+        
         //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 
         stage.setTitle("Time Tabling");

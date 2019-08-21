@@ -30,5 +30,5 @@ public abstract class BaseController implements Initializable{
     public  void showCourses(ActionEvent event) {
         mainApp.navigate("courses");
     }
-    public abstract void loaded();
+    public abstract void loaded() throws Exception;
 }

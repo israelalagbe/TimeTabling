@@ -14,3 +14,4 @@ com\israelalagbe\timetable\UIManager.class
 com\israelalagbe\timetable\FXMLController.class
 com\israelalagbe\timetable\models\Department.class
 com\israelalagbe\timetable\DataService.class
+Name.class

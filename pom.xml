@@ -30,6 +30,11 @@
             <artifactId>jfoenix</artifactId>
             <version>1</version>
         </dependency>
+        <dependency>
+            <groupId>SqliteConnector</groupId>
+            <artifactId>sqlitel-connector-java</artifactId>
+            <version>3.27.2.1</version>
+        </dependency>
     </dependencies>
 
     <properties>

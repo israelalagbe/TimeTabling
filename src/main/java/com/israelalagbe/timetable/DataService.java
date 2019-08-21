@@ -20,9 +20,10 @@ import java.util.List;
 public class DataService {
     private AdminBase admin;
     public DataService() {
-        admin = AdminBase.initialize(AdminBase.DATABASE.MYSQL,
-                "localhost", "3306", "timetable", "root", "");
-       
+//        admin = AdminBase.initialize(AdminBase.DATABASE.SQLite,
+//                "localhost", "3306", "timetable", "root", "");
+       admin = AdminBase.initialize(AdminBase.DATABASE.SQLite,
+                "timetable.db");
     }
     
     public void addCourse(Course course){

@@ -66,7 +66,8 @@ public class CourseController extends BaseController {
         UIManager.addRequiredValidator(courseCode, "Course code is required");
        
     }
-    public void loaded(){
+    @Override
+    public void loaded() throws Exception{
         coursesObservable=FXCollections.observableArrayList(mainApp.dataService.getCourses());
         coursesTable.setItems(coursesObservable);
         TableColumn<Course, String> nameCol = new TableColumn<>("Course Name");
