@@ -28,21 +28,24 @@ public class MainApp extends Application {
     public Window getWindow() {
         return scene.getWindow();
     }
-    
+
     public void navigate(String pageName) {
         try {
-            FXMLLoader loader=null;
-            switch(pageName){
-                case "departments":{
+            FXMLLoader loader = null;
+            switch (pageName) {
+                case "departments": {
                     loader = new FXMLLoader(getClass().getResource("/fxml/departments.fxml"));
                     break;
                 }
-                case "courses":{
+                case "courses": {
                     loader = new FXMLLoader(getClass().getResource("/fxml/courses.fxml"));
                     break;
                 }
+                case "lecturers": {
+                    loader = new FXMLLoader(getClass().getResource("/fxml/lecturers.fxml"));
+                    break;
+                }
             }
-            
 
             Parent root = (Parent) loader.load();
             BaseController controller = loader.getController();
@@ -58,7 +61,8 @@ public class MainApp extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
+            System.err.println("Navigation error: "+e.getMessage());
         }
     }
 
@@ -70,15 +74,13 @@ public class MainApp extends Application {
         Parent root = (Parent) loader.load();
         CourseController courseController = loader.getController();
         courseController.setMainApp(this);
-        try{
-               courseController.loaded();
+        try {
+            courseController.loaded();
+        } catch (Exception e) {
+            UIManager.showAlert(Alert.AlertType.INFORMATION, stage, "Database Connection Error", e.getMessage());
         }
-        catch(Exception e){
-               UIManager.showAlert(Alert.AlertType.INFORMATION, stage, "Database Connection Error", e.getMessage() );
-        }
-        
-        //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 
+        //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         stage.setTitle("Time Tabling");
         scene = new Scene(root);
         scene.getStylesheets()

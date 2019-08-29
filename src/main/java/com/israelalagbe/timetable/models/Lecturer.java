@@ -13,16 +13,17 @@ import cat.quickdb.annotation.Table;
  *
  * @author Israel Alagbe
  */
-@Table("Lecturers")
+@Table("lecturers")
 public class Lecturer {
     @Column(type = TYPES.PRIMARYKEY)
     @ColumnDefinition(autoIncrement = true, length = 11,
             primary = true, type = DATATYPE.INT)
     private int id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     private String gender;
-    private String dob;
     public int getId() {
         return id;
     }
@@ -50,16 +51,4 @@ public class Lecturer {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-    
-    
-    
-    
 }

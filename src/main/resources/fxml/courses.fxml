@@ -18,7 +18,7 @@
             <items>
                 <Button mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" onAction="#showCourses" />
                 <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments"  onAction="#showDepartments"/>
-                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" onAction="#showLecturers" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Timetables" />
             </items>
         </ToolBar>
@@ -38,10 +38,6 @@
       <ScrollPane layoutX="-2.0" layoutY="350.0" prefHeight="148.0" prefWidth="1000.0">
          <content>
             <TableView prefHeight="396.0" prefWidth="985.0" fx:id="coursesTable">
-<!--              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>-->
             </TableView>
          </content>
       </ScrollPane>

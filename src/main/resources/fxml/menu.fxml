@@ -6,12 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    <ToolBar prefHeight="40.0" prefWidth="503.0">
-        <items>
-          <Button mnemonicParsing="false" text="Home" />
-            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="About" />
-            <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" text="Contact" />
-        </items>
-      </ToolBar>
-</AnchorPane>
+<ToolBar prefHeight="40.0" prefWidth="1000" >
+            <items>
+                <Button mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" onAction="#showCourses" />
+                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments"  onAction="#showDepartments"/>
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Timetables" />
+            </items>
+        </ToolBar>

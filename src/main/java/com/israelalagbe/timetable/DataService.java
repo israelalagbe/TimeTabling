@@ -9,6 +9,7 @@ import cat.quickdb.db.AdminBase;
 import com.israelalagbe.timetable.models.Course;
 import com.israelalagbe.timetable.models.Department;
 import com.israelalagbe.timetable.models.Example;
+import com.israelalagbe.timetable.models.Lecturer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +25,24 @@ public class DataService {
 //                "localhost", "3306", "timetable", "root", "");
        admin = AdminBase.initialize(AdminBase.DATABASE.SQLite,
                 "timetable.db");
+       
     }
     
     public void addCourse(Course course){
         admin.save(course);
     }
+    public void saveModel(Object model){
+        admin.save(model);
+    }
+    public List  getModels(Object model){
+        return admin.obtain(model).findAll();
+    }
     
     public List<Course> getCourses(){
         return admin.obtain(new Course()).findAll();
+    }
+    public List<Lecturer> getLecturers(){
+        return admin.obtain(new Lecturer()).findAll();
     }
     public void addDepartment(Department department){
         admin.save(department);
