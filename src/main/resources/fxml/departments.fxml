@@ -6,18 +6,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.israelalagbe.timetable.DepartmentsController">
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.israelalagbe.timetable.DepartmentsController">
     <children>
        <ToolBar prefHeight="40.0" prefWidth="1000">
             <items>
-                <Button mnemonicParsing="false" styleClass="jfx-button" text="Manage Courses" onAction="#showCourses" />
-                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Departments"  onAction="#showDepartments"/>
-                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Lecturers" onAction="#showLecturers" />
+                <Button mnemonicParsing="false" onAction="#showCourses" styleClass="jfx-button" text="Manage Courses" />
+                <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDepartments" styleClass="jfx-button" text="Manage Departments" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showLecturers" styleClass="jfx-button" text="Manage Lecturers" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" text="Manage Timetables" />
             </items>
         </ToolBar>
@@ -25,18 +25,23 @@
         <JFXTabPane prefHeight="85.0" prefWidth="69.0" />
         <JFXTabPane />
         <JFXTabPane layoutX="142.0" layoutY="233.0" />
-      <JFXTextField fx:id="departmentName" layoutX="265.0" layoutY="144.0" prefHeight="25.0" prefWidth="477.0" />
-      <Label layoutX="265.0" layoutY="128.0" text="Department Name">
+      <JFXTextField fx:id="departmentName" layoutX="263.0" layoutY="186.0" prefHeight="25.0" prefWidth="477.0" />
+      <Label layoutX="265.0" layoutY="163.0" text="Department Name">
          <font>
             <Font name="Roboto Regular" size="12.0" />
          </font>
       </Label>
-      <JFXButton fx:id="saveBtn" layoutX="258.0" layoutY="199.0"  prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="SAVE" onAction="#saveDepartment" />
+      <JFXButton fx:id="saveBtn" layoutX="258.0" layoutY="239.0" onAction="#saveDepartment" prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="SAVE" />
       <ScrollPane layoutX="-2.0" layoutY="350.0" prefHeight="148.0" prefWidth="1000.0">
          <content>
-            <TableView prefHeight="396.0" prefWidth="985.0" fx:id="departmentsTable">
+            <TableView fx:id="departmentsTable" prefHeight="396.0" prefWidth="985.0">
             </TableView>
          </content>
       </ScrollPane>
+      <Label layoutX="363.0" layoutY="104.0" text="Manage Departments">
+         <font>
+            <Font name="Roboto Regular" size="25.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

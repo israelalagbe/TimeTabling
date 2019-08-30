@@ -55,8 +55,9 @@ public class LecturerController extends BaseController{
         Lecturer lecturer=new Lecturer();
         lecturer.setFirstName(firstName.getText());
         lecturer.setLastName(lastName.getText());
+        lecturer.setGender(gender.getSelectionModel().getSelectedItem());
         
-        if(lecturer.getFirstName().isEmpty()||lecturer.getLastName().isEmpty()){
+        if(lecturer.getFirstName().isEmpty()||lecturer.getLastName().isEmpty()||lecturer.getGender().isEmpty()){
             UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Error", "Lecturer's info cannot be empty" );
             return;
         }
@@ -81,8 +82,7 @@ public class LecturerController extends BaseController{
     }
     public void loaded(){
         gender.getItems().addAll("Male","Female");
-        lists=FXCollections.observableArrayList(new ArrayList());
-         lists.setAll(mainApp.dataService.getLecturers());
+        lists=FXCollections.observableArrayList(mainApp.dataService.getLecturers());
         table.setItems(lists);
         TableColumn<Lecturer, String> col1 = new TableColumn<>("Lecturer's First Name");
         col1.setCellValueFactory(
@@ -91,8 +91,12 @@ public class LecturerController extends BaseController{
         TableColumn<Lecturer, String> col2 = new TableColumn<>("Lecturer's Last Name");
         col2.setCellValueFactory(
                 new PropertyValueFactory<Lecturer, String>("lastName"));
-        col2.setMinWidth(200);
-        table.getColumns().addAll(col1, col2);
+             col2.setMinWidth(200);
+        TableColumn<Lecturer, String> col3 = new TableColumn<>("Lecturer's Gender");
+        col3.setCellValueFactory(
+                new PropertyValueFactory<Lecturer, String>("gender"));
+        col3.setMinWidth(200);
+        table.getColumns().addAll(col1, col2, col3);
         
     }
 }
