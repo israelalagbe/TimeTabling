@@ -21,6 +21,11 @@ public class Level {
             primary = true, type = DATATYPE.INT)
     private int id;
     private String name;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }

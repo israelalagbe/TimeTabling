@@ -8,6 +8,7 @@ package com.israelalagbe.timetable;
 import cat.quickdb.db.AdminBase;
 import com.israelalagbe.timetable.models.Course;
 import com.israelalagbe.timetable.models.Department;
+import com.israelalagbe.timetable.models.DepartmentalCourses;
 import com.israelalagbe.timetable.models.Example;
 import com.israelalagbe.timetable.models.Lecturer;
 import java.util.ArrayList;
@@ -40,6 +41,17 @@ public class DataService {
     
     public List<Course> getCourses(){
         return admin.obtain(new Course()).findAll();
+    }
+     public List<DepartmentalCourses> getDepartmentCoursesByDepartment(Department department){
+         List<DepartmentalCourses> values=admin.obtain(new DepartmentalCourses()).findAll();
+         List<DepartmentalCourses> filtered=new ArrayList<>();
+         for(DepartmentalCourses dc:values){
+             if(dc.getDepartment().getId()==department.getId()){
+                 filtered.add(dc);
+             }
+         }
+         return filtered;
+       // return admin.obtain(new DepartmentalCourses()).where("department").equal(department.getId()).findAll();
     }
     public List<Lecturer> getLecturers(){
         return admin.obtain(new Lecturer()).findAll();

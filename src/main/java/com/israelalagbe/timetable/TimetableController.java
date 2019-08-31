@@ -7,19 +7,28 @@ package com.israelalagbe.timetable;
 
 import com.israelalagbe.timetable.models.Course;
 import com.israelalagbe.timetable.models.Department;
+import com.israelalagbe.timetable.models.DepartmentalCourses;
 import com.israelalagbe.timetable.models.LectureRoom;
 import com.israelalagbe.timetable.models.Lecturer;
 import com.israelalagbe.timetable.models.Level;
+import com.israelalagbe.timetable.models.TimeTable;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  *
@@ -33,7 +42,7 @@ public class TimetableController extends BaseController {
       @FXML
     private JFXComboBox<Department>  departments;
       @FXML
-    private JFXComboBox<Course>  courses;
+    private JFXComboBox<DepartmentalCourses>  courses;
       @FXML
     private JFXComboBox<Lecturer>  lecturers;
       @FXML
@@ -42,28 +51,64 @@ public class TimetableController extends BaseController {
     private JFXComboBox<Level>  levels;
       @FXML
     private JFXComboBox<String>  days;
+      private ObservableList<TimeTable> lists = null;
+      @FXML
+    private TableView<TimeTable> table;
     @Override
     public void loaded() throws Exception {
        
-       timeListeners();
-    }
-    private void timeListeners(){
-      time.focusedProperty().addListener(new ChangeListener<Boolean>(){
+       departments.setItems(obs(mainApp.dataService.getDepartments()));
+       departments.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Department>(){
            @Override
-           public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-               if(newValue){
-                   time.show();
-               }
-               else{
-                   int hour=time.getValue().getHour();
-                   if(hour<7 || hour>19){
-                       LocalTime localTime = LocalTime.now().withHour(7).withMinute(0);
-                        time.setValue(localTime);
-                   }
-               }
+           public void changed(ObservableValue<? extends Department> observable, Department oldValue, Department newValue) {
+                     courses.setItems(obs(mainApp.dataService.getDepartmentCoursesByDepartment(newValue)));
            }
-       });  
+            
+       
+       });
+       
+       lecturers.setItems(obs(mainApp.dataService.getLecturers()));
+       lectureRooms.setItems(obs(mainApp.dataService.getModels(new LectureRoom())));
+       levels.setItems(obs(mainApp.dataService.getModels(new Level())));
+       days.getItems().addAll("Monday", "Tuesday","Wednesday", "Thursday","Friday");
+       timeListeners();
+        lists=FXCollections.observableArrayList(mainApp.dataService.getModels(new TimeTable()));
+       table.setItems(lists);
+       TableColumn<TimeTable, String> col1 = new TableColumn<>("Department Name");
+        col1.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("department"));
+        col1.setMinWidth(100);
+        TableColumn<TimeTable, String> col2 = new TableColumn<>("Course Name");
+        col2.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("course"));
+             col2.setMinWidth(100);
+        TableColumn<TimeTable, String> col3 = new TableColumn<>("Level");
+        col3.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("level"));
+        col3.setMinWidth(100);
+         TableColumn<TimeTable, String> col4 = new TableColumn<>("Lecturer");
+        col4.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("lecturer"));
+        col4.setMinWidth(100);
+        TableColumn<TimeTable, String> col5 = new TableColumn<>("Lecture Room");
+        col5.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("lectureRoom"));
+        col5.setMinWidth(100);
+        TableColumn<TimeTable, String> col6 = new TableColumn<>("Day");
+        col6.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("day"));
+        col6.setMinWidth(100);
+        TableColumn<TimeTable, String> col7 = new TableColumn<>("Time");
+        col7.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("time"));
+        col7.setMinWidth(100);
+        TableColumn<TimeTable, String> col8 = new TableColumn<>("Duration (Hours)");
+        col8.setCellValueFactory(
+                new PropertyValueFactory<TimeTable, String>("duration"));
+        col8.setMinWidth(100);
+        table.getColumns().addAll(col1, col2, col3,col4, col5,col6, col7, col8);
     }
+   
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LocalTime localTime = LocalTime.now().withHour(7).withMinute(0);
@@ -81,7 +126,69 @@ public class TimetableController extends BaseController {
     
     @FXML
     private void save(ActionEvent event) {
+        TimeTable timeTable=new TimeTable();
+        Department department=departments.getSelectionModel().getSelectedItem();
+        DepartmentalCourses departmentalCourse=courses.getSelectionModel().getSelectedItem();
+        Level level=levels.getSelectionModel().getSelectedItem();
+        Lecturer lecturer=lecturers.getSelectionModel().getSelectedItem();
+        LectureRoom  lectureRoom=lectureRooms.getSelectionModel().getSelectedItem();
+        String day=days.getValue();
+        int hour=time.getValue().getHour();
+         if(
+                department==null ||
+                 departmentalCourse==null ||
+                 level==null ||
+                 lecturer==null ||
+                 lectureRoom == null ||
+                 day ==null ||
+                 hour<7 || hour>19
+            ){
+            UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Error", "Info cannot be empty or info is lecture time is invalid!" );
+                return;
+        }
+         timeTable.setDepartment(department);
+         timeTable.setCourse(departmentalCourse.getCourse());
+         timeTable.setLevel(level);
+         timeTable.setLecturer(lecturer);
+         timeTable.setLectureRoom(lectureRoom);
+         timeTable.setDay(day);
+         timeTable.setTime(time.getValue().toString());
+         timeTable.setDuration(Integer.valueOf( duration.getText()));
+         mainApp.dataService.saveModel(timeTable);
+        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
+        try{
+           lists.setAll(mainApp.dataService.getModels(new TimeTable()));
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        departments.getSelectionModel().clearSelection();
+        courses.getSelectionModel().clearSelection();
+        levels.getSelectionModel().clearSelection();
+        lecturers.getSelectionModel().clearSelection();
+        lectureRooms.getSelectionModel().clearSelection();
+        days.getSelectionModel().clearSelection();
         
+        
+  }
+    private ObservableList obs(List  list){
+        return FXCollections.observableArrayList(list);  
     }
-    
+     private void timeListeners(){
+      time.focusedProperty().addListener(new ChangeListener<Boolean>(){
+           @Override
+           public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+               if(newValue){
+                   time.show();
+               }
+               else{
+                   int hour=time.getValue().getHour();
+                   if(hour<7 || hour>19){
+                       LocalTime localTime = LocalTime.now().withHour(7).withMinute(0);
+                        time.setValue(localTime);
+                   }
+               }
+           }
+       });  
+    }
 }

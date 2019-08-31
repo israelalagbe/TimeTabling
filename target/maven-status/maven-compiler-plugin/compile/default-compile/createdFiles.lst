@@ -13,6 +13,7 @@ com\israelalagbe\timetable\models\LectureRoom.class
 com\israelalagbe\timetable\DataService.class
 Name.class
 com\israelalagbe\timetable\CourseController.class
+com\israelalagbe\timetable\TimetableController$2.class
 com\israelalagbe\timetable\BaseController.class
 com\israelalagbe\timetable\MainApp.class
 com\israelalagbe\timetable\LecturerController.class

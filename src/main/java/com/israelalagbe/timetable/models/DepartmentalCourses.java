@@ -54,7 +54,7 @@ public class DepartmentalCourses {
 
     @Override
     public String toString() {
-        return this.getCourse().getName()+" - "+getDepartment().getName(); //To change body of generated methods, choose Tools | Templates.
+        return this.getCourse().getName()+" - "+this.getCourseType(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

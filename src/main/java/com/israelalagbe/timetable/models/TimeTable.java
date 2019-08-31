@@ -28,6 +28,7 @@ public class TimeTable {
     private Department department;
     private String day;
     private String time;
+     private int duration;
     private Lecturer lecturer;
     private LectureRoom lectureRoom;
 
@@ -93,5 +94,13 @@ public class TimeTable {
 
     public void setLectureRoom(LectureRoom lectureRoom) {
         this.lectureRoom = lectureRoom;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getDuration() {
+        return duration;
     }
 }
