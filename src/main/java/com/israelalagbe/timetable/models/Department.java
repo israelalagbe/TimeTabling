@@ -43,7 +43,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return this.name; //To change body of generated methods, choose Tools | Templates.
+        return this.name;
     }
     
 }

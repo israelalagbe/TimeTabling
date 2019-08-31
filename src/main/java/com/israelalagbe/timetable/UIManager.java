@@ -5,7 +5,10 @@
  */
 package com.israelalagbe.timetable;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -26,6 +29,24 @@ public class UIManager {
         alert.initOwner(owner);
         alert.show();
     }
+    public static void addRequiredValidator(final JFXComboBox validationField,String message){
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Required");
+//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
+        validationField.getValidators().add(validator);
+//        (o, oldVal, newVal) -> {
+//            if (!newVal) {
+//                validationField.validate();
+//            }
+//        }
+        validationField.focusedProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                validationField.validate();
+            }
+           
+        });
+    }
     public static void addRequiredValidator(final JFXTextField validationField,String message){
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Required");
@@ -44,4 +65,41 @@ public class UIManager {
            
         });
     }
+    public static void addRequiredValidator(final JFXTimePicker validationField,String message){
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Required");
+//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
+        validationField.getValidators().add(validator);
+//        (o, oldVal, newVal) -> {
+//            if (!newVal) {
+//                validationField.validate();
+//            }
+//        }
+        validationField.focusedProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                validationField.validate();
+            }
+           
+        });
+    }
+    public static void addNumberValidator(final JFXTextField validationField,String message){
+        NumberValidator validator = new NumberValidator();
+        validator.setMessage("Should be a number");
+//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
+        validationField.getValidators().add(validator);
+//        (o, oldVal, newVal) -> {
+//            if (!newVal) {
+//                validationField.validate();
+//            }
+//        }
+        validationField.focusedProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                validationField.validate();
+            }
+           
+        });
+    }
+    
 }

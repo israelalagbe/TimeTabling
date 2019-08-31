@@ -19,6 +19,7 @@
                 <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDepartments" styleClass="jfx-button" text="Manage Departments" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showLecturers" styleClass="jfx-button" text="Manage Lecturers" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDepartmentalCourses" styleClass="jfx-button" text="Manage Departmental Courses" />
+                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showTimetables" styleClass="jfx-button" text="Manage Timetable" />
             </items>
         </ToolBar>
         <JFXTabPane />

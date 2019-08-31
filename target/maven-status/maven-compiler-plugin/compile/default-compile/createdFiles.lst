@@ -2,9 +2,14 @@ com\israelalagbe\timetable\models\Level.class
 com\israelalagbe\timetable\UIManager$1.class
 com\israelalagbe\timetable\models\Example.class
 com\israelalagbe\timetable\models\Course.class
+com\israelalagbe\timetable\UIManager$4.class
+com\israelalagbe\timetable\TimetableController$1.class
+com\israelalagbe\timetable\DepartmentalCoursesController.class
+com\israelalagbe\timetable\UIManager$3.class
 com\israelalagbe\timetable\Hello.class
 com\israelalagbe\timetable\UIManager.class
 com\israelalagbe\timetable\FXMLController.class
+com\israelalagbe\timetable\models\LectureRoom.class
 com\israelalagbe\timetable\DataService.class
 Name.class
 com\israelalagbe\timetable\CourseController.class
@@ -15,4 +20,7 @@ com\israelalagbe\timetable\models\Lecturer.class
 com\israelalagbe\timetable\MenuController.class
 com\israelalagbe\timetable\models\TimeTable.class
 com\israelalagbe\timetable\DepartmentsController.class
+com\israelalagbe\timetable\TimetableController.class
 com\israelalagbe\timetable\models\Department.class
+com\israelalagbe\timetable\models\DepartmentalCourses.class
+com\israelalagbe\timetable\UIManager$2.class

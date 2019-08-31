@@ -38,5 +38,9 @@ public abstract class BaseController implements Initializable{
     public  void showDepartmentalCourses(ActionEvent event) {
         mainApp.navigate("departmental_courses");
     }
+    @FXML
+    public  void showTimetables(ActionEvent event) {
+        mainApp.navigate("timetables");
+    }
     public abstract void loaded() throws Exception;
 }

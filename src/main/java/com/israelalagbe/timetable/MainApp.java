@@ -49,6 +49,10 @@ public class MainApp extends Application {
                     loader = new FXMLLoader(getClass().getResource("/fxml/departmental_courses.fxml"));
                     break;
                 }
+                case "timetables": {
+                    loader = new FXMLLoader(getClass().getResource("/fxml/timetables.fxml"));
+                    break;
+                }
             }
 
             Parent root = (Parent) loader.load();

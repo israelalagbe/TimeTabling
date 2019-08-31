@@ -15,11 +15,12 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.israelalagbe.timetable.LecturerController">
     <children>
         <ToolBar prefHeight="40.0" prefWidth="1000">
-            <items>
+           <items>
                 <Button mnemonicParsing="false" onAction="#showCourses" styleClass="jfx-button" text="Manage Courses" />
                 <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDepartments" styleClass="jfx-button" text="Manage Departments" />
                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showLecturers" styleClass="jfx-button" text="Manage Lecturers" />
-                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" styleClass="jfx-button" onAction="#showDepartmentalCourses"  text="Manage Departmental Courses" />
+                <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showDepartmentalCourses" styleClass="jfx-button" text="Manage Departmental Courses" />
+                 <Button layoutX="66.0" layoutY="13.0" mnemonicParsing="false" onAction="#showTimetables" styleClass="jfx-button" text="Manage Timetable" />
             </items>
         </ToolBar>
         <JFXTabPane />

@@ -29,7 +29,12 @@ public class TimeTable {
     private String day;
     private String time;
     private Lecturer lecturer;
+    private LectureRoom lectureRoom;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getId() {
         return id;
     }
@@ -82,4 +87,11 @@ public class TimeTable {
         this.lecturer = lecturer;
     }
 
+    public LectureRoom getLectureRoom() {
+        return lectureRoom;
+    }
+
+    public void setLectureRoom(LectureRoom lectureRoom) {
+        this.lectureRoom = lectureRoom;
+    }
 }

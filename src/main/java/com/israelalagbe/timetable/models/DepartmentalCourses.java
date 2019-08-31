@@ -51,5 +51,10 @@ public class DepartmentalCourses {
     public void setCourseType(String courseType) {
         this.courseType = courseType;
     }
+
+    @Override
+    public String toString() {
+        return this.getCourse().getName()+" - "+getDepartment().getName(); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

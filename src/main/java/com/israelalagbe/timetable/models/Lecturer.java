@@ -57,4 +57,10 @@ public class Lecturer {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String toString() {
+        return this.firstName+" "+this.lastName; //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
