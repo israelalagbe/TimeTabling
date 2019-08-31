@@ -45,6 +45,10 @@ public class MainApp extends Application {
                     loader = new FXMLLoader(getClass().getResource("/fxml/lecturers.fxml"));
                     break;
                 }
+                case "departmental_courses": {
+                    loader = new FXMLLoader(getClass().getResource("/fxml/departmental_courses.fxml"));
+                    break;
+                }
             }
 
             Parent root = (Parent) loader.load();
