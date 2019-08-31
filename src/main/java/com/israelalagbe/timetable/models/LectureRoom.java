@@ -12,18 +12,26 @@ import cat.quickdb.annotation.Properties.TYPES;
 import cat.quickdb.annotation.Table;
 /**
  *
- * @author Israel Alagbe
+ * @author User
  */
-@Table("levels")
-public class Level {
+@Table("lecture_rooms")
+public class LectureRoom {
     @Column(type = TYPES.PRIMARYKEY)
     @ColumnDefinition(autoIncrement = true, length = 11,
             primary = true, type = DATATYPE.INT)
     private int id;
+    
+    @Column
     private String name;
+    
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
     public String getName() {
         return name;
@@ -35,7 +43,6 @@ public class Level {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.name; //To change body of generated methods, choose Tools | Templates.
     }
-    
 }
