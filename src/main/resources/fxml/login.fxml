@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.israelalagbe.timetable.LoginController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.israelalagbe.timetable.LoginController">
+    <children>
+       <ToolBar prefHeight="40.0" prefWidth="1000">
+            <items>
+                <Button mnemonicParsing="false" onAction="#showCourses" styleClass="jfx-button" text="&lt; Go Back" />
+            </items>
+        </ToolBar>
+        <JFXTabPane />
+        <JFXTabPane prefHeight="85.0" prefWidth="69.0" />
+        <JFXTabPane />
+        <JFXTabPane layoutX="142.0" layoutY="233.0" />
+      <JFXTextField fx:id="username" layoutX="263.0" layoutY="186.0" prefHeight="25.0" prefWidth="477.0" />
+      <Label layoutX="265.0" layoutY="163.0" text="Username">
+         <font>
+            <Font name="Roboto Regular" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="258.0" layoutY="288.0" onAction="#login" prefHeight="40.0" prefWidth="477.0" styleClass="jfx-button" text="Login" />
+      <Label layoutX="432.0" layoutY="104.0" text="Admin Login">
+         <font>
+            <Font name="Roboto Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="265.0" layoutY="226.0" text="Password">
+         <font>
+            <Font name="Roboto Regular" size="12.0" />
+         </font>
+      </Label>
+      <JFXPasswordField layoutX="265.0" layoutY="249.0" prefHeight="25.0" prefWidth="477.0"  fx:id="password"  />
+    </children>
 </AnchorPane>

@@ -53,6 +53,10 @@ public class MainApp extends Application {
                     loader = new FXMLLoader(getClass().getResource("/fxml/timetables.fxml"));
                     break;
                 }
+                case "login": {
+                    loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+                    break;
+                }
             }
 
             Parent root = (Parent) loader.load();
@@ -77,13 +81,13 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         dataService = new DataService();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/courses.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
 
         Parent root = (Parent) loader.load();
-        CourseController courseController = loader.getController();
-        courseController.setMainApp(this);
+        BaseController controller = loader.getController();
+        controller.setMainApp(this);
         try {
-            courseController.loaded();
+            controller.loaded();
         } catch (Exception e) {
             UIManager.showAlert(Alert.AlertType.INFORMATION, stage, "Database Connection Error", e.getMessage());
         }
