@@ -57,6 +57,10 @@ public class MainApp extends Application {
                     loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
                     break;
                 }
+                case "show_timetable": {
+                    loader = new FXMLLoader(getClass().getResource("/fxml/show_timetable.fxml"));
+                    break;
+                }
             }
 
             Parent root = (Parent) loader.load();
@@ -81,7 +85,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         dataService = new DataService();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/show_timetable.fxml"));
 
         Parent root = (Parent) loader.load();
         BaseController controller = loader.getController();

@@ -11,6 +11,8 @@ import com.israelalagbe.timetable.models.Department;
 import com.israelalagbe.timetable.models.DepartmentalCourses;
 import com.israelalagbe.timetable.models.Example;
 import com.israelalagbe.timetable.models.Lecturer;
+import com.israelalagbe.timetable.models.Level;
+import com.israelalagbe.timetable.models.TimeTable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,9 @@ public class DataService {
          }
          return filtered;
        // return admin.obtain(new DepartmentalCourses()).where("department").equal(department.getId()).findAll();
+    }
+    public List<TimeTable> getTimetables(Department d, Level l){
+      return admin.obtainAll(new TimeTable(),  String.format("department=%s AND level=%s", d.getId(),l.getId()));
     }
     public List<Lecturer> getLecturers(){
         return admin.obtain(new Lecturer()).findAll();

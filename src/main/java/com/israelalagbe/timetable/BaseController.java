@@ -42,5 +42,13 @@ public abstract class BaseController implements Initializable{
     public  void showTimetables(ActionEvent event) {
         mainApp.navigate("timetables");
     }
+    @FXML
+    public  void showLogin(ActionEvent event) {
+        mainApp.navigate("login");
+    }
+    @FXML
+    public  void displayTimtable(ActionEvent event) {
+        mainApp.navigate("show_timetable");
+    }
     public abstract void loaded() throws Exception;
 }

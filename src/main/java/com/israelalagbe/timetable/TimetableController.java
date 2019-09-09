@@ -77,11 +77,11 @@ public class TimetableController extends BaseController {
        TableColumn<TimeTable, String> col1 = new TableColumn<>("Department Name");
         col1.setCellValueFactory(
                 new PropertyValueFactory<TimeTable, String>("department"));
-        col1.setMinWidth(100);
+        col1.setMinWidth(200);
         TableColumn<TimeTable, String> col2 = new TableColumn<>("Course Name");
         col2.setCellValueFactory(
                 new PropertyValueFactory<TimeTable, String>("course"));
-             col2.setMinWidth(100);
+             col2.setMinWidth(200);
         TableColumn<TimeTable, String> col3 = new TableColumn<>("Level");
         col3.setCellValueFactory(
                 new PropertyValueFactory<TimeTable, String>("level"));
