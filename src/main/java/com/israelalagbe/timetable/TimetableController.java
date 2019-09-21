@@ -19,6 +19,7 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -106,7 +108,19 @@ public class TimetableController extends BaseController {
         col8.setCellValueFactory(
                 new PropertyValueFactory<TimeTable, String>("duration"));
         col8.setMinWidth(100);
-        table.getColumns().addAll(col1, col2, col3,col4, col5,col6, col7, col8);
+        
+        TableColumn<TimeTable,  Button> deleteCol = new TableColumn<>("Action");
+        deleteCol.setCellFactory(ActionButtonTableCell.<TimeTable>forTableColumn("Delete",new Function<TimeTable, TimeTable>() {
+            @Override
+            public TimeTable apply(TimeTable timetable) {
+                mainApp.dataService.deleteModel(timetable);
+                lists.setAll(mainApp.dataService.getModels(new TimeTable()));
+                UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable  Deleted" );
+                return  timetable;
+            }
+        }));
+        
+        table.getColumns().addAll(col1, col2, col3,col4, col5,col6, col7, col8, deleteCol);
     }
    
     @Override
@@ -267,6 +281,8 @@ public class TimetableController extends BaseController {
         return FXCollections.observableArrayList(list);  
     }
      private void timeListeners(){
+         LocalTime localTime = LocalTime.now().withHour(7).withMinute(0).withSecond(0).withNano(0);
+          time.setValue(localTime);
       time.focusedProperty().addListener(new ChangeListener<Boolean>(){
            @Override
            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
