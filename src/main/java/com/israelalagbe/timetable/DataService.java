@@ -74,6 +74,12 @@ public class DataService {
             admin.delete(dc);
         }
     }
+    public void deleteModels(Object model,String query){
+      List items= admin.obtainAll(model,  query);
+        for (Object item : items) {
+            deleteModel(item);
+        }
+    }
     public void deleteModel(Object model){
         admin.delete(model);
     }

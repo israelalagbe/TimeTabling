@@ -6,6 +6,7 @@ package com.israelalagbe.timetable;
  * and open the template in the editor.
  */
 
+import com.israelalagbe.timetable.models.Course;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
@@ -16,9 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import com.israelalagbe.timetable.models.Department;
+import com.israelalagbe.timetable.models.DepartmentalCourses;
+import com.israelalagbe.timetable.models.TimeTable;
 import java.util.ArrayList;
+import java.util.function.Function;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -76,7 +81,19 @@ public class DepartmentsController extends BaseController{
         TableColumn<Department, String> nameCol = new TableColumn<>("Department Name");
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<Department, String>("name"));
-        departmentsTable.getColumns().addAll(nameCol);
+        TableColumn<Department,  Button> deleteCol = new TableColumn<>("Action");
+        deleteCol.setCellFactory(ActionButtonTableCell.<Department>forTableColumn("Delete",new Function<Department, Department>() {
+            @Override
+            public Department apply(Department department) {
+                mainApp.dataService.deleteModels(new DepartmentalCourses(),"department="+department.getId());
+            mainApp.dataService.deleteModels(new TimeTable(),"department="+department.getId());
+                mainApp.dataService.deleteModel(department);
+                departmentsObservable.setAll(mainApp.dataService.getDepartments());
+                UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Department Deleted" );
+                return  department;
+            }
+        }));
+        departmentsTable.getColumns().addAll(nameCol,deleteCol);
     }
 }
 

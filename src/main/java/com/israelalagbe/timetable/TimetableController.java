@@ -166,20 +166,20 @@ public class TimetableController extends BaseController {
               UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Success", "Course cannot appear more than once in a week" );
               return;
          }
-        // mainApp.dataService.saveModel(timeTable);
-//        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
-//        try{
-//           lists.setAll(mainApp.dataService.getModels(new TimeTable()));
-//        }
-//        catch(Exception e){
-//            System.err.println(e.getMessage());
-//        }
-//        departments.getSelectionModel().clearSelection();
-//        courses.getSelectionModel().clearSelection();
-//        levels.getSelectionModel().clearSelection();
-//        lecturers.getSelectionModel().clearSelection();
-//        lectureRooms.getSelectionModel().clearSelection();
-//        days.getSelectionModel().clearSelection();
+         mainApp.dataService.saveModel(timeTable);
+        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
+        try{
+           lists.setAll(mainApp.dataService.getModels(new TimeTable()));
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+        departments.getSelectionModel().clearSelection();
+        courses.getSelectionModel().clearSelection();
+        levels.getSelectionModel().clearSelection();
+        lecturers.getSelectionModel().clearSelection();
+        lectureRooms.getSelectionModel().clearSelection();
+        days.getSelectionModel().clearSelection();
         
         
   }
