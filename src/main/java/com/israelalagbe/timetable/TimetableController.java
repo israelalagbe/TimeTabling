@@ -158,6 +158,14 @@ public class TimetableController extends BaseController {
               UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Success", "Lecture room has already been booked!" );
               return;
          }
+         if(isLecturerBooked(timeTable)){
+              UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Success", "Lecturer  cannot appear more than once at a time!" );
+              return;
+         }
+         if(isCourseBooked(timeTable)){
+              UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Success", "Course cannot appear more than once in a week" );
+              return;
+         }
         // mainApp.dataService.saveModel(timeTable);
 //        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
 //        try{
@@ -175,28 +183,47 @@ public class TimetableController extends BaseController {
         
         
   }
-    public boolean isDuplicate(TimeTable timeTable){
+    public boolean isCourseBooked(TimeTable timeTable){
+        
+        for (TimeTable t : lists) {
+       
+                if(   
+                        timeTable.getCourse().getId() == t.getCourse().getId()
+                        &&
+                        timeTable.getDepartment().getId() == t.getDepartment().getId()
+                        &&
+                        timeTable.getLevel().getId() == t.getLevel().getId()
+                       
+                        
+                  ){
+                         return true;
+                     
+                }
+        }
+        return false;
+    }
+    public boolean isLecturerBooked(TimeTable timeTable){
         String day=days.getValue();
          int hour=time.getValue().getHour();
          int min=time.getValue().getMinute();
-         int totalTime=hour+(min/60);
-         int dur=Integer.valueOf( duration.getText());
+         int totalTime=(hour * 60)+min;
+         int dur=Integer.valueOf( duration.getText()) * 60;
         for (TimeTable t : lists) {
                 String time2=t.getTime();
                 int hour2= Integer.valueOf(time2.split(":")[0]);
                 int min2= Integer.valueOf(time2.split(":")[1]);
-                int totalTime2=hour2+(min2/60);
-                int dur2=t.getDuration();
+                int totalTime2=(hour2*60)+min2;
+                int dur2=t.getDuration()*60;
+                System.out.println(timeTable.getLecturer().getId()==t.getLecturer().getId());
                 if(   
-                        timeTable.getCourse().getId() == t.getCourse().getId()
-                        &&
-                         timeTable.getLectureRoom().getId()==t.getLectureRoom().getId()
+                         timeTable.getLecturer().getId()==t.getLecturer().getId()
                         &&
                         timeTable.getDay().equalsIgnoreCase(t.getDay())
-                       
+                       &&
+                        timeOverlaps(totalTime, dur, totalTime2, dur2)
                         
                   ){
-                         
+                         return true;
                      
                 }
         }
@@ -229,10 +256,10 @@ public class TimetableController extends BaseController {
         return false;
     }
     private boolean timeOverlaps(int time1 /* x1*/, int duration1 /* x2*/, int time2  /* y1*/, int duration2  /* y2*/){
-        if(  time1<time2 && (time1+duration1) >  time2){
+        if(  time1<=time2 && (time1+duration1) >  time2){
             return  true;
         }
-        else if( time2 < time1 &&  (time2+duration2) > time1){
+        else if( time2 <= time1 &&  (time2+duration2) > time1){
             return true;
         }
         return false;
