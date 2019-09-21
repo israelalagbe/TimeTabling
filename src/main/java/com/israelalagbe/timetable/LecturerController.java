@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import com.israelalagbe.timetable.models.Department;
+import com.israelalagbe.timetable.models.DepartmentalCourses;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +29,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.israelalagbe.timetable.models.Lecturer;
+import com.israelalagbe.timetable.models.TimeTable;
 import com.jfoenix.controls.JFXComboBox;
+import java.util.function.Function;
+import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
@@ -96,7 +100,18 @@ public class LecturerController extends BaseController{
         col3.setCellValueFactory(
                 new PropertyValueFactory<Lecturer, String>("gender"));
         col3.setMinWidth(200);
-        table.getColumns().addAll(col1, col2, col3);
+        TableColumn<Lecturer,  Button> deleteCol = new TableColumn<>("Action");
+        deleteCol.setCellFactory(ActionButtonTableCell.<Lecturer>forTableColumn("Delete",new Function<Lecturer, Lecturer>() {
+            @Override
+            public Lecturer apply(Lecturer lecturer) {
+            mainApp.dataService.deleteModels(new TimeTable(),"lecturer="+lecturer.getId());
+                mainApp.dataService.deleteModel(lecturer);
+                lists.setAll(mainApp.dataService.getLecturers());
+                UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Lecturer Deleted" );
+                return  lecturer;
+            }
+        }));
+        table.getColumns().addAll(col1, col2, col3, deleteCol);
         
     }
 }
