@@ -58,6 +58,25 @@ public class DataService {
     public List<TimeTable> getTimetables(Department d, Level l){
       return admin.obtainAll(new TimeTable(),  String.format("department=%s AND level=%s", d.getId(),l.getId()));
     }
+    public List<TimeTable> getTimetables(Course c){
+      return admin.obtainAll(new TimeTable(),  String.format("course=%s", c.getId()));
+    }
+    public List<DepartmentalCourses> getDepartmentalCourses(Course c){
+      return admin.obtainAll(new DepartmentalCourses(),  String.format("course=%s", c.getId()));
+    }
+    public void  deleteTimetables(Course c){
+        for (TimeTable t: getTimetables(c)) {
+            admin.delete(t);
+        }
+    }
+    public void  deleteDepartmentalCourses(Course c){
+        for (DepartmentalCourses dc: getDepartmentalCourses(c)) {
+            admin.delete(dc);
+        }
+    }
+    public void deleteModel(Object model){
+        admin.delete(model);
+    }
     public List<TimeTable> getAllTimetables(){
        return admin.obtain(new TimeTable()).findAll();
     }

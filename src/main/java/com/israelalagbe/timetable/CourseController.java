@@ -15,12 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import com.israelalagbe.timetable.models.Course;
+import java.util.function.Function;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 public class CourseController extends BaseController {
 
@@ -76,6 +78,18 @@ public class CourseController extends BaseController {
         TableColumn<Course, String> codeCol = new TableColumn<>("Course Code");
         codeCol.setCellValueFactory(
                 new PropertyValueFactory<Course, String>("code"));
-        coursesTable.getColumns().addAll(nameCol,codeCol);
+        TableColumn<Course,  Button> deleteCol = new TableColumn<>("Action");
+        deleteCol.setCellFactory(ActionButtonTableCell.<Course>forTableColumn("Delete",new Function<Course, Course>() {
+            @Override
+            public Course apply(Course course) {
+                mainApp.dataService.deleteDepartmentalCourses(course);
+                mainApp.dataService.deleteTimetables(course);
+                mainApp.dataService.deleteModel(course);
+                coursesObservable.setAll(mainApp.dataService.getCourses());
+                UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Course Deleted" );
+                return  course;
+            }
+        }));
+        coursesTable.getColumns().addAll(nameCol,codeCol, deleteCol);
     }
 }

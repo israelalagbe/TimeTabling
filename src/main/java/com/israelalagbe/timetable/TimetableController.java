@@ -214,7 +214,6 @@ public class TimetableController extends BaseController {
                 int min2= Integer.valueOf(time2.split(":")[1]);
                 int totalTime2=(hour2*60)+min2;
                 int dur2=t.getDuration()*60;
-                System.out.println(timeTable.getLecturer().getId()==t.getLecturer().getId());
                 if(   
                          timeTable.getLecturer().getId()==t.getLecturer().getId()
                         &&
