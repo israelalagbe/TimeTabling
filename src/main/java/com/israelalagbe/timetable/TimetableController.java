@@ -154,23 +154,89 @@ public class TimetableController extends BaseController {
          timeTable.setDay(day);
          timeTable.setTime(time.getValue().toString());
          timeTable.setDuration(Integer.valueOf( duration.getText()));
-         mainApp.dataService.saveModel(timeTable);
-        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
-        try{
-           lists.setAll(mainApp.dataService.getModels(new TimeTable()));
-        }
-        catch(Exception e){
-            System.err.println(e.getMessage());
-        }
-        departments.getSelectionModel().clearSelection();
-        courses.getSelectionModel().clearSelection();
-        levels.getSelectionModel().clearSelection();
-        lecturers.getSelectionModel().clearSelection();
-        lectureRooms.getSelectionModel().clearSelection();
-        days.getSelectionModel().clearSelection();
+         if(isLectureRoomBooked(timeTable)){
+              UIManager.showAlert(Alert.AlertType.ERROR, mainApp.getWindow(), "Success", "Lecture room has already been booked!" );
+              return;
+         }
+        // mainApp.dataService.saveModel(timeTable);
+//        UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Timetable saved successfully!" );
+//        try{
+//           lists.setAll(mainApp.dataService.getModels(new TimeTable()));
+//        }
+//        catch(Exception e){
+//            System.err.println(e.getMessage());
+//        }
+//        departments.getSelectionModel().clearSelection();
+//        courses.getSelectionModel().clearSelection();
+//        levels.getSelectionModel().clearSelection();
+//        lecturers.getSelectionModel().clearSelection();
+//        lectureRooms.getSelectionModel().clearSelection();
+//        days.getSelectionModel().clearSelection();
         
         
   }
+    public boolean isDuplicate(TimeTable timeTable){
+        String day=days.getValue();
+         int hour=time.getValue().getHour();
+         int min=time.getValue().getMinute();
+         int totalTime=hour+(min/60);
+         int dur=Integer.valueOf( duration.getText());
+        for (TimeTable t : lists) {
+                String time2=t.getTime();
+                int hour2= Integer.valueOf(time2.split(":")[0]);
+                int min2= Integer.valueOf(time2.split(":")[1]);
+                int totalTime2=hour2+(min2/60);
+                int dur2=t.getDuration();
+                if(   
+                        timeTable.getCourse().getId() == t.getCourse().getId()
+                        &&
+                         timeTable.getLectureRoom().getId()==t.getLectureRoom().getId()
+                        &&
+                        timeTable.getDay().equalsIgnoreCase(t.getDay())
+                       
+                        
+                  ){
+                         
+                     
+                }
+        }
+        return false;
+    }
+    public boolean isLectureRoomBooked(TimeTable timeTable){
+        String day=days.getValue();
+         int hour=time.getValue().getHour();
+         int min=time.getValue().getMinute();
+         int totalTime=(hour * 60)+min;
+         int dur=Integer.valueOf( duration.getText()) * 60;
+        for (TimeTable t : lists) {
+                String time2=t.getTime();
+                int hour2= Integer.valueOf(time2.split(":")[0]);
+                int min2= Integer.valueOf(time2.split(":")[1]);
+                int totalTime2=(hour2*60)+min2;
+                int dur2=t.getDuration()*60;
+                if(   
+                         timeTable.getLectureRoom().getId()==t.getLectureRoom().getId()
+                        &&
+                        timeTable.getDay().equalsIgnoreCase(t.getDay())
+                       &&
+                        timeOverlaps(totalTime, dur, totalTime2, dur2)
+                        
+                  ){
+                         return true;
+                     
+                }
+        }
+        return false;
+    }
+    private boolean timeOverlaps(int time1 /* x1*/, int duration1 /* x2*/, int time2  /* y1*/, int duration2  /* y2*/){
+        if(  time1<time2 && (time1+duration1) >  time2){
+            return  true;
+        }
+        else if( time2 < time1 &&  (time2+duration2) > time1){
+            return true;
+        }
+        return false;
+    }
     private ObservableList obs(List  list){
         return FXCollections.observableArrayList(list);  
     }

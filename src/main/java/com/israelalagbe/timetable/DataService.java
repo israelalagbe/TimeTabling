@@ -58,6 +58,9 @@ public class DataService {
     public List<TimeTable> getTimetables(Department d, Level l){
       return admin.obtainAll(new TimeTable(),  String.format("department=%s AND level=%s", d.getId(),l.getId()));
     }
+    public List<TimeTable> getAllTimetables(){
+       return admin.obtain(new TimeTable()).findAll();
+    }
     public List<Lecturer> getLecturers(){
         return admin.obtain(new Lecturer()).findAll();
     }
