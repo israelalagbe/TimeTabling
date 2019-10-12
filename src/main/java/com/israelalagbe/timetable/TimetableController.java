@@ -135,7 +135,6 @@ public class TimetableController extends BaseController {
         UIManager.addRequiredValidator(days, "This field is required");
         UIManager.addRequiredValidator(time, "This field is required");
         UIManager.addRequiredValidator(duration, "This field is required");
-        UIManager.addNumberValidator(duration, "This field is required");
     }
     
     @FXML
