@@ -44,7 +44,7 @@ import javax.swing.JTextPane;
  * @author User
  */
 public class ShowTimetable extends BaseController {
-
+    String[] rowList=new String[20];
     private JFXTextField duration;
     @FXML
     private JFXComboBox<Department> departments;
@@ -59,9 +59,14 @@ public class ShowTimetable extends BaseController {
     };
     
     String htmlContent="";
-
+     void clearHtmls(){
+         for (int i = 0; i < 20; i++) {
+            rowList[i]="";
+        }
+     }
     @Override
     public void loaded() throws Exception {
+        clearHtmls();
         departments.setItems(obs(mainApp.dataService.getDepartments()));
         levels.setItems(obs(mainApp.dataService.getModels(new Level())));
         grid.setPadding(new Insets(50, 50, 50, 50));
@@ -80,7 +85,7 @@ public class ShowTimetable extends BaseController {
     String getHeading(){
          Department department = departments.getSelectionModel().getSelectedItem();
        return  String.format(
-               "<h1 style=\"text-align: center;\">Federal College of Animal Health & Production Technology</h1>"
+               "<html><body><h1 style=\"text-align: center;\">Federal College of Animal Health & Production Technology</h1>"
                + "<h3 style=\"text-align: center;\">%s Department</h3><br><br>"
                , department);
     }
@@ -143,18 +148,27 @@ public class ShowTimetable extends BaseController {
         grid.setPadding(new Insets(50, 50, 50, 50));
         grid.setAlignment(Pos.CENTER);
         htmlContent=getHeading();
-         htmlContent+="<table style=\"width: 100%;text-align: center;\" border=\"2\" cellpadding='30'><tr>";
+         htmlContent+="<table style=\"width: 100%;text-align: center;\" border=\"2\" cellpadding='2'><tr>";
         for (int col = 0; col <= 4; col++) {
             htmlContent+="<th>"+days[col]+"</th>";
             Label label = new Label(days[col]);
             addItem(label, 0, col);
         }
          htmlContent+="</tr>";
+         
+         clearHtmls();
         for (int i = 0; i < days.length; i++) {
             displayTimetableDay(list, days[i], i);
         }
         grid.setGridLinesVisible(true);
-
+         
+        for (String row : rowList) {
+            htmlContent+="<tr>";
+             htmlContent+=row;
+              htmlContent+="</tr>";
+        }
+         htmlContent+="</table></body></html>";
+         System.out.println(htmlContent);
 //        System.out.println("Timetable lenght : "+list.size());
     }
 
@@ -171,10 +185,14 @@ public class ShowTimetable extends BaseController {
             Label label = new Label(timeTable.getCourse().getName()
                     + "\n Time: " + timeTable.getTime()
                     + "\n Duration: " + timeTable.getDuration() + " Hour(s)");
+            rowList[row]+="<td>"+timeTable.getCourse().getName()
+                    + "<br> Time: " + timeTable.getTime()
+                    + "<br> Duration: " + timeTable.getDuration() + " Hour(s) </td>";
             addItem(label, row + 1, col);
         }
         for (; row < 10; row++) {
             Label label = new Label("");
+             rowList[row]+="<td></td>";
             addItem(label, row + 1, col);
         }
     }
