@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -15,7 +10,7 @@ import javafx.scene.control.Alert;
 
 /**
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class LoginController extends BaseController {
     @FXML

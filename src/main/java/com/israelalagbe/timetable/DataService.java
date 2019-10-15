@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
 import cat.quickdb.db.AdminBase;
@@ -19,13 +14,11 @@ import java.util.List;
 
 /**
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class DataService {
     private AdminBase admin;
     public DataService() {
-//        admin = AdminBase.initialize(AdminBase.DATABASE.SQLite,
-//                "localhost", "3306", "timetable", "root", "");
        admin = AdminBase.initialize(AdminBase.DATABASE.SQLite,
                 "timetable.db");
        
@@ -53,7 +46,6 @@ public class DataService {
              }
          }
          return filtered;
-       // return admin.obtain(new DepartmentalCourses()).where("department").equal(department.getId()).findAll();
     }
     public List<TimeTable> getTimetables(Department d, Level l){
       return admin.obtainAll(new TimeTable(),  String.format("department=%s AND level=%s", d.getId(),l.getId()));

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
 import com.israelalagbe.timetable.models.Department;
@@ -41,7 +36,7 @@ import javax.swing.JTextPane;
 
 /**
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class ShowTimetable extends BaseController {
     String[] rowList=new String[20];
@@ -107,29 +102,10 @@ public class ShowTimetable extends BaseController {
 
     @FXML
     private void printTimetable(ActionEvent event) throws Exception {
-//        PrinterJob job = PrinterJob.createPrinterJob();
-//        if (job != null) {
-//            job.showPrintDialog(this.mainApp.getWindow()); // Window must be your main Stage
-//            System.out.println(anchorPane);
-//            job.printPage(anchorPane);
-//
-//            job.endJob();
-//        }
-
-//        PrinterJob printerJob = PrinterJob.createPrinterJob();
-//        if (printerJob != null) {
-//            PageLayout pageLayout = printerJob.getPrinter().createPageLayout(Paper.A5, PageOrientation.LANDSCAPE, 0, 0, 0, 0);
-//
-//            boolean success = printerJob.printPage(pageLayout, anchorPane);
-//            if (success) {
-//                printerJob.endJob();
-//            }
-//        }
-
-    JTextPane jtp = new JTextPane();
-    jtp.setContentType("text/html");
-    jtp.setText(htmlContent); //Your whole html here..
-    jtp.print();
+        JTextPane jtp = new JTextPane();
+        jtp.setContentType("text/html");
+        jtp.setText(htmlContent);
+        jtp.print();
 
     }
 
@@ -169,7 +145,6 @@ public class ShowTimetable extends BaseController {
         }
          htmlContent+="</table></body></html>";
          System.out.println(htmlContent);
-//        System.out.println("Timetable lenght : "+list.size());
     }
 
     void displayTimetableDay(List<TimeTable> allTimetables, String day, int col) {

@@ -1,10 +1,5 @@
 package com.israelalagbe.timetable;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import com.israelalagbe.timetable.models.Course;
 import com.jfoenix.controls.JFXButton;
@@ -31,7 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * FXML Controller class
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class DepartmentsController extends BaseController{
     @FXML
@@ -62,13 +57,10 @@ public class DepartmentsController extends BaseController{
         catch(Exception e){
             System.err.println(e.getMessage());
         }
-        
-        // System.out.println("You clicked me!");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
        UIManager.addRequiredValidator(departmentName, "Department name is required");
         //UIManager.addRequiredValidator(courseCode, "Course code is required");
        

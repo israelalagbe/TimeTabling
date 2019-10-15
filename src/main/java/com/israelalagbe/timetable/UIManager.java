@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
 import com.jfoenix.controls.JFXComboBox;
@@ -19,7 +14,7 @@ import javafx.stage.Window;
 
 /**
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class UIManager {
     public static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
@@ -33,13 +28,7 @@ public class UIManager {
     public static void addRequiredValidator(final JFXComboBox validationField,String message){
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Required");
-//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
         validationField.getValidators().add(validator);
-//        (o, oldVal, newVal) -> {
-//            if (!newVal) {
-//                validationField.validate();
-//            }
-//        }
         validationField.focusedProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -51,13 +40,7 @@ public class UIManager {
     public static void addRequiredValidator(final JFXTextField validationField,String message){
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Required");
-//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
         validationField.getValidators().add(validator);
-//        (o, oldVal, newVal) -> {
-//            if (!newVal) {
-//                validationField.validate();
-//            }
-//        }
         validationField.focusedProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -69,13 +52,7 @@ public class UIManager {
     public static void addRequiredValidator(final JFXTimePicker validationField,String message){
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Required");
-//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
         validationField.getValidators().add(validator);
-//        (o, oldVal, newVal) -> {
-//            if (!newVal) {
-//                validationField.validate();
-//            }
-//        }
         validationField.focusedProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -87,13 +64,7 @@ public class UIManager {
     public static void addRequiredValidator(final JFXPasswordField validationField,String message){
         RequiredFieldValidator validator = new RequiredFieldValidator();
         validator.setMessage("Required");
-//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
         validationField.getValidators().add(validator);
-//        (o, oldVal, newVal) -> {
-//            if (!newVal) {
-//                validationField.validate();
-//            }
-//        }
         validationField.focusedProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {
@@ -105,13 +76,7 @@ public class UIManager {
     public static void addNumberValidator(final JFXTextField validationField,String message){
         NumberValidator validator = new NumberValidator();
         validator.setMessage("Should be a number");
-//validator.setAwsomeIcon(new Icon(AwesomeIcon.WARNING,"2em",";","error"));
         validationField.getValidators().add(validator);
-//        (o, oldVal, newVal) -> {
-//            if (!newVal) {
-//                validationField.validate();
-//            }
-//        }
         validationField.focusedProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {

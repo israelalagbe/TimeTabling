@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable.models;
 import cat.quickdb.annotation.Column;
 import cat.quickdb.annotation.ColumnDefinition;
@@ -54,7 +49,7 @@ public class DepartmentalCourses {
 
     @Override
     public String toString() {
-        return this.getCourse().getName()+" - "+this.getCourseType(); //To change body of generated methods, choose Tools | Templates.
+        return this.getCourse().getName()+" - "+this.getCourseType();
     }
     
 }

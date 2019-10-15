@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
 import com.jfoenix.controls.JFXButton;
@@ -44,10 +39,8 @@ public class CourseController extends BaseController {
     private TableView<Course> coursesTable;
     private ObservableList<Course> coursesObservable = null;
     
-    
     @FXML
     public void saveCourse(ActionEvent event) {
-        //courseCode.getText(), courseName.getText();
         Course course=new Course();
         course.setName(courseName.getText());
         course.setCode(courseCode.getText());
@@ -58,16 +51,14 @@ public class CourseController extends BaseController {
         mainApp.dataService.addCourse(course);
         UIManager.showAlert(Alert.AlertType.INFORMATION, mainApp.getWindow(), "Success", "Course Saved" );
         coursesObservable.setAll(mainApp.dataService.getCourses());
-        // System.out.println("You clicked me!");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         UIManager.addRequiredValidator(courseName, "Course name is required");
         UIManager.addRequiredValidator(courseCode, "Course code is required");
-       
     }
+
     @Override
     public void loaded() throws Exception{
         coursesObservable=FXCollections.observableArrayList(mainApp.dataService.getCourses());

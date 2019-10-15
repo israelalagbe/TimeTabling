@@ -1,15 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -36,7 +26,7 @@ import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class LecturerController extends BaseController{
     //@FXML
@@ -73,8 +63,6 @@ public class LecturerController extends BaseController{
         catch(Exception e){
             System.err.println(e.getMessage());
         }
-        
-        // System.out.println("You clicked me!");
     }
 
     @Override

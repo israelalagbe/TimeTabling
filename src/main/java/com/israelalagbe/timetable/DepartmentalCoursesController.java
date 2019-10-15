@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.israelalagbe.timetable;
 import com.israelalagbe.timetable.models.Course;
 import com.jfoenix.controls.JFXButton;
@@ -30,7 +25,7 @@ import javafx.util.Callback;
 
 /**
  *
- * @author User
+ * @author Israel Alagbe
  */
 public class DepartmentalCoursesController extends BaseController{
     @FXML

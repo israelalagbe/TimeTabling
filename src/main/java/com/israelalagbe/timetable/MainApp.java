@@ -67,7 +67,6 @@ public class MainApp extends Application {
             BaseController controller = loader.getController();
             controller.setMainApp(this);
             controller.loaded();
-            //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));1
             Stage stage = (Stage) getWindow();
             stage.setTitle("Time Tabling");
             scene = new Scene(root);
@@ -96,7 +95,6 @@ public class MainApp extends Application {
             UIManager.showAlert(Alert.AlertType.INFORMATION, stage, "Database Connection Error", e.getMessage());
         }
 
-        //Parent root=FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         stage.setTitle("Time Tabling");
         scene = new Scene(root);
         scene.getStylesheets()
@@ -115,16 +113,6 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Example example = new Example();
-//         Course course=new Course();
-//        try{
-//            AdminBase admin = AdminBase.initialize(AdminBase.DATABASE.MYSQL,
-//                "localhost", "3306", "timetable", "root", "");
-//            admin.save(course);
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-
         launch(args);
     }
 
